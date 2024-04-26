@@ -1,0 +1,33 @@
+.barra-lateral {
+    background-color: #FFFFFF;
+    padding: 26px;
+    border-radius: 16px;
+    height: 60vh;
+    width: 15vw;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.item {
+    display: flex; 
+    align-items: center;
+    padding: 12px;
+    font-size: 18px;
+    gap: 1em;
+    cursor: pointer;
+}
+
+.item--ativo {
+    background-color: #FDEDB7;
+    border-radius: 10px;
+}
+
+.baixo {
+    border-top: 1px solid #D9D9D9;
+    padding-top: 1em;
+}

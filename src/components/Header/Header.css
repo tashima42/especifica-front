@@ -1,0 +1,70 @@
+.cabecalho {
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.esquerdo {
+    display: flex;
+    align-items: center;
+    gap: 7em;
+}
+
+.esquerdo img {
+    cursor: pointer;
+}
+
+.esquerdo div {
+    background-color: transparent;
+    border: 1px solid #D9D9D9;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.esquerdo input {
+    border: none;
+    width: 90%;
+}
+
+.esquerdo input::placeholder {
+    color: #898989;
+}
+
+.esquerdo button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.direito {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.sino {
+    font-size: 26px;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    border-left: 1px solid #D9D9D9;
+    padding-left: 2em;
+}
+
+.perfil div {
+    background-color: #F1F1F1;
+    padding: 10px;
+    border-radius: 8px;
+}
