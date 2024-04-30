@@ -29,17 +29,29 @@ function Nav() {
                             <p>Mapa de salas</p>
                         </NavLink>
                     </li>
-                    <li className="item">
-                        <img src={Person} alt="icone do mapa de professores"/>
-                        <p>Mapa de professores</p>
+                    <li>
+                        <NavLink to="/mapa-de-professores" className={({isActive}) => {
+                            return isActive ? "item--ativo" : "item"
+                        }}>
+                            <img src={Person} alt="icone do mapa de professores"/>
+                            <p>Mapa de professores</p>
+                        </NavLink>
                     </li>
-                    <li className="item">
-                        <img src={Clock} alt="icone do relogio"/>
-                        <p>Horários</p>
+                    <li>
+                        <NavLink to="/horarios" className={({isActive}) => {
+                            return isActive ? "item--ativo" : "item"
+                        }}>
+                            <img src={Clock} alt="icone do relogio"/>
+                            <p>Horários</p>
+                        </NavLink>
                     </li>
-                    <li className="item">
-                        <img src={TestResults} alt="icone do relatorio"/>
-                        <p>Relatórios</p>
+                    <li>
+                        <NavLink to="/relatorios" className={({isActive}) => {
+                            return isActive ? "item--ativo" : "item"
+                        }}>
+                            <img src={TestResults} alt="icone do relatorio"/>
+                            <p>Relatórios</p>
+                        </NavLink>
                     </li>
                 </div>
                 <div className="baixo">
