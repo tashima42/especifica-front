@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import MapaProfessores from "./pages/MapaProfessores";
 import Horarios from "./pages/Horarios";
 import Relatorios from "./pages/Relatorios";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           </Routes>
         </div>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }
