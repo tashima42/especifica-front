@@ -1,0 +1,97 @@
+.login-container {
+    display: grid;
+    place-items: center;
+}
+
+.login {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 64px 64px 32px 64px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 60vh;
+    width: 25vw;
+    margin-top: 4em;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.login h1 {
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    letter-spacing: 3px;
+}
+
+.login h6 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.float-label {
+    position: relative;
+    width: 100%;
+    margin-top: 3em;
+}
+
+.float-label input {
+    padding: 14px;
+    width: 93%;
+    border-radius: 5px;
+    border: 1px solid #000000;
+}
+
+.float-label label {
+    font-size: 12px;
+    font-weight: 400;
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    background-color: #FFFFFF;
+    padding: 0 5px;
+}
+
+.checkbox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 5px;
+    font-size: 12px;
+    justify-content: flex-end;
+}
+
+.login__botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.login__botoes button {
+    background-color: #FAC61F;
+    border: none;
+    padding: 10px 42px;
+    font-family: "JetBrains Mono", monospace;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.login__botoes button:hover {
+    background-color: #deb11d;
+}
+
+.login__botoes span, a {
+    font-size: 12px;
+    color: #000000;
+}
+
+.login__botoes a {
+    font-weight: 500;
+}
