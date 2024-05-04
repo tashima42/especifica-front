@@ -1,9 +1,9 @@
 .titulo {
-    font-family: "Red Hat Display", sans-serif;
-    font-weight: 900;
-    color: #000000;
-    border-left: 9px solid #FAC61F;
-    line-height: 28px;
-    padding-left: 12px;
-    margin-bottom: 10px;
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: 900;
+  color: #000000;
+  border-left: 9px solid #fac61f;
+  line-height: 28px;
+  padding-left: 12px;
+  margin-bottom: 10px;
 }

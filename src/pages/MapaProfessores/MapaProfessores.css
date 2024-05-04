@@ -1,0 +1,8 @@
+.mapa-professores {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 46px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  min-height: 60vh;
+  width: 100%;
+}

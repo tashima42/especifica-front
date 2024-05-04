@@ -1,12 +1,12 @@
 .botao-buscar {
-    background-color: #FAC61F;
-    border: none;
-    padding: 10px 22px;
-    font-family: "JetBrains Mono", monospace;
-    cursor: pointer;
-    border-radius: 8px;
+  background-color: #fac61f;
+  border: none;
+  padding: 10px 22px;
+  font-family: "JetBrains Mono", monospace;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
 .botao-buscar:hover {
-    background-color: #deb11d;
+  background-color: #deb11d;
 }
