@@ -1,0 +1,35 @@
+.mapa-professores {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 46px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  height: 70.8vh;
+  width: 100%;
+}
+
+.mapa-professores form {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 3em;
+}
+
+.mapa-professores form div {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.mapa-professores form label {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+}
+
+.mapa-professores form select {
+  border: 1px solid #d9d9d9;
+  padding: 5px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 700;
+  font-family: "JetBrains Mono", monospace;
+}
