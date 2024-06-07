@@ -1,0 +1,114 @@
+.relatorios {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 46px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    min-height: 60vh;
+    width: 100%;
+}
+
+.relatorios__form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3em;
+}
+
+.relatorios__form div {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.relatorios__form label {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+}
+
+.relatorios__form select {
+    border: 1px solid #d9d9d9;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.caixa-tabela {
+    padding: 1em 2em;
+    margin: 2em 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 16px;
+}
+
+.impressora {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.impressora h4 {
+    font-family: "JetBrains Mono", monospace;
+    border-left: 5px solid #fac61f;
+    padding-left: 0.5em;
+}
+
+.impressora button {
+    border: none;
+    display: flex;
+    align-items: center;
+    background-color: #fac61f;
+    border-radius: 7px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.impressora button:hover {
+    background-color: #deb11d;
+}
+
+.caixa-tabela table {
+    margin-top: 2em;
+    font-size: 12px;
+    width: 100%;
+}
+
+.caixa-tabela table, th, td {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+
+.caixa-tabela table th {
+    color: #FFFFFF;
+    background-color: #fac61f;
+}
+
+.caixa-tabela th {
+    padding: 5px 0;
+}
+
+.caixa-tabela td {
+    text-align: center;
+}
+
+.caixa-tabela tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.caixa-tabela tr:nth-child(odd) {
+    background-color: #eaeaea;
+}
+
+.botao-desfazer {
+    color: #000000;
+    background-color: #FFF962;
+    border: none;
+    font-family: "JetBrains Mono", monospace;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.botao-desfazer:hover {
+    cursor: pointer;
+    background-color: #ccc850;
+}
