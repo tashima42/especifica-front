@@ -71,14 +71,21 @@ function Nav() {
             </li>
           </div>
           <div className="baixo">
-            <li className="item">
-              <img src={Settings} alt="icone das configurações" />
-              <p>Configurações</p>
-            </li>
-            <li className="item">
-              <img src={Logout} alt="icone do logout" />
-              <p>Logout</p>
-            </li>
+            <li>
+                <NavLink
+                  to="/configuracoes"
+                  className={({ isActive }) => {
+                    return isActive ? "item--ativo" : "item";
+                  }}
+                >
+                  <img src={Settings} alt="icone de engrenagens" />
+                  <p>Configurações</p>
+                </NavLink>
+              </li>
+              <li className="item">
+                <img src={Logout} alt="icone do logout" />
+                <p>Logout</p>
+              </li>
           </div>
         </ul>
       </nav>

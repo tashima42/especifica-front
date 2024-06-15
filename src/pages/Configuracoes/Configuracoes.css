@@ -1,0 +1,90 @@
+.configuracoes {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 46px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    min-height: 60vh;
+    width: 100%;
+}
+
+.info-basicas {
+    padding: 1em 2em;
+    margin: 2em 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 16px;
+}
+
+.info-basicas h4 {
+    font-family: "JetBrains Mono", monospace;
+    border-left: 5px solid #fac61f;
+    padding-left: 0.5em;
+}
+
+.info-basicas__form {
+    margin: 2em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.campos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.info-basicas__form label {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+}
+
+.info-basicas__form select {
+    border: 1px solid #d9d9d9;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: "JetBrains Mono", monospace;
+    color: #7A7A7A;
+}
+
+.campos div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.campos div input {
+    border: none;
+    outline: none;
+}
+
+.campos div input[type="file"]::file-selector-button {
+    display: none;
+}
+
+.campos div {
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    padding: 5px 10px 5px 5px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: "JetBrains Mono", monospace;
+    width: 30%;
+}
+
+.caneta {
+    font-size: 12px;
+}
+
+.campos button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.lixeira {
+    font-size: 16px;
+}

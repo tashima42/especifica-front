@@ -8,6 +8,7 @@ import Horarios from "./pages/Horarios";
 import Relatorios from "./pages/Relatorios";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import Configuracoes from "./pages/Configuracoes";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/horarios" Component={Horarios} />
           <Route path="/relatorios" Component={Relatorios} />
           <Route path="/login" Component={Login} />
+          <Route path="/configuracoes" Component={Configuracoes}/>
         </Routes>
       </div>
       <Footer />
