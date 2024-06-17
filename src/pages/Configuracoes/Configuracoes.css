@@ -7,24 +7,29 @@
     width: 100%;
 }
 
-.info-basicas {
+.info-basicas, .info-acesso, .criar-conta__caixa {
     padding: 1em 2em;
     margin: 2em 0;
     border: 1px solid #d9d9d9;
     border-radius: 16px;
 }
 
-.info-basicas h4 {
+.info-basicas h4, .info-acesso h4, .criar-conta__caixa h4 {
     font-family: "JetBrains Mono", monospace;
     border-left: 5px solid #fac61f;
     padding-left: 0.5em;
 }
 
-.info-basicas__form {
+.info-basicas__form, .info-acesso__form--cima, .info-acesso__form--baixo, .criar-conta__caixa {
     margin: 2em 0;
     display: flex;
     flex-direction: column;
     gap: 1em;
+}
+
+.info-acesso__form--cima {
+    border-bottom: 1px solid #E0E0E0;
+    padding-bottom: 2em;
 }
 
 .campos {
@@ -33,12 +38,12 @@
     gap: 20px;
 }
 
-.info-basicas__form label {
+.info-basicas__form label, .info-acesso__form label, .criar-conta__caixa label {
     font-family: "JetBrains Mono", monospace;
     font-weight: 500;
 }
 
-.info-basicas__form select {
+.info-basicas__form select, .criar-conta__caixa select {
     border: 1px solid #d9d9d9;
     padding: 5px;
     text-align: center;
@@ -57,6 +62,12 @@
 .campos div input {
     border: none;
     outline: none;
+    width: 100%;
+}
+
+.campos div input::placeholder {
+    color: #AAAAAA;
+    font-family: "JetBrains Mono", monospace;
 }
 
 .campos div input[type="file"]::file-selector-button {
@@ -87,4 +98,23 @@
 
 .lixeira {
     font-size: 16px;
+}
+
+.botao-salvar__container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.botao-salvar {
+    background-color: #fac61f;
+    border: none;
+    padding: 10px 22px;
+    font-family: "JetBrains Mono", monospace;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.botao-salvar:hover {
+    background-color: #deb11d;
 }
