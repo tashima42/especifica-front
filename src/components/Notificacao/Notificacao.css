@@ -1,0 +1,26 @@
+.notificacao {
+    display: flex;
+    gap: 1em;
+    background-color: #FFFFFF;
+    padding: 16px;
+    border-bottom: 1px solid #D9D9D9;
+    border-radius: 6px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.notificacao__icon {
+    font-size: 48px;
+}
+
+.notificacao__conteudo p {
+    color: black;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.notificacao__conteudo span {
+    font-size: 10px;
+    color: #898989;
+    font-weight: 400;
+}

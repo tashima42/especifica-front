@@ -5,6 +5,7 @@
   padding: 1em 2em;
   align-items: center;
   border-radius: 20px;
+  position: relative;
 }
 
 .esquerdo {
@@ -73,4 +74,27 @@
   background-color: #f1f1f1;
   padding: 10px;
   border-radius: 8px;
+}
+
+.caixa-notificacoes {
+  position: absolute;
+  top: 70px;
+  right: 240px;
+}
+
+.caixa-notificacoes__container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: #ffffff;
+  border: 1px solid #D9D9D9;
+  border-radius: 6px;
+}
+
+.botao-ver-todas {
+  text-align: center;
+  padding: 16px 0;
+  text-decoration: none;
+  color: #5012FF;
+  font-size: 12px;
 }
