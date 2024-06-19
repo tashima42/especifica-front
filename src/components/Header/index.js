@@ -31,7 +31,7 @@ function Header() {
           <div className="caixa-notificacoes__container">
             <Notificacao tipo="aviso" texto="AVISO! Aloque todas as aulas da turma N14 de “Algoritmos 1” em uma única sala! Salas atuais: “P105”, “P005”;"/>
             <Notificacao tipo="check" texto="Você alterou a turma N14 de “Algoritmos 1” de sala. (P005 > P105)”;"/>
-            <Link className="botao-ver-todas">Ver todas</Link>
+            <Link to="/notificacoes" className="botao-ver-todas">Ver todas</Link>
           </div>
         </div>
         <div className="perfil">

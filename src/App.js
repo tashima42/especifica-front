@@ -9,6 +9,7 @@ import Relatorios from "./pages/Relatorios";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Configuracoes from "./pages/Configuracoes";
+import Notificacoes from "./pages/Notificacoes";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/relatorios" Component={Relatorios} />
           <Route path="/login" Component={Login} />
           <Route path="/configuracoes" Component={Configuracoes}/>
+          <Route path="/notificacoes" Component={Notificacoes}/>
         </Routes>
       </div>
       <Footer />
