@@ -185,10 +185,7 @@ class ClassMap {
   }
 
   getFilteredClasses(day, period, block) {
-    console.log(day, period, block)
-    console.log("classes: ", this.classMap[day][period][block])
     const classes = this.classMap[day][period][block] !== undefined ? this.classMap[day][period][block] : []
-    console.log("c ", classes)
     return classes
   }
 }
