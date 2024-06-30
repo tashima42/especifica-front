@@ -1,7 +1,6 @@
 import "./MapaSalas.css";
 import Subtitulo from "../../components/Subtitulo";
 import Titulo from "../../components/Titulo";
-import BotaoBuscar from "../../components/BotaoBuscar";
 import CardSala from "../../components/CardSala";
 import Nav from "../../components/Nav";
 import { ClassMap } from "../../controllers/horarios";
@@ -13,11 +12,7 @@ function MapaSalas() {
     block: "p",
     day: "segunda",
     period: "m1",
-    // classes: classMap.getFilteredClasses("segunda", "m1", "p")
   }
-  // const [block, blockState] = useState("p")
-  // const [day, dayState] = useState("segunda")
-  // const [period, periodState] = useState("m1")
   const [classes, classesState] = useState(classMap.getFilteredClasses("segunda", "m1", "p"))
 
   return (
@@ -74,16 +69,11 @@ function MapaSalas() {
             </select>
           </div>
 
-          <BotaoBuscar />
         </form>
 
         <div className="caixa-salas">
           <h4>Selecione uma sala para checar seus Horários</h4>
           <div className="salas">
-            {/* <CardSala sala="001" capacidade={40} disciplina="AS65A" docente="Thiaga Ellen" alunos={40} turma="N15" status="Em uso" />
-            <CardSala sala="002" capacidade={40} disciplina="AS65A" docente="Thiaga Ellen" alunos={40} turma="N15" status="Indisponível" />
-            <CardSala sala="003" capacidade={30} disciplina="AS65A" docente="Joze" alunos="28" turma="N15" status="Em uso" />
-            <CardSala sala="004" capacidade={50} disciplina="-" docente="-" alunos="-" turma="-" status="Disponível" /> */}
             {classes.map((c, i) => <CardSala key={i} sala={c.classroom.getNumber()} disciplina={c.class.getClassCode()} docente={c.class.getProfessor()} alunos={c.class.getStudents()} turma={c.class.getCode()} status="Em uso"></CardSala>)}
           </div>
         </div>
@@ -103,27 +93,19 @@ function MapaSalas() {
   )
 
   function handleBlockState(e) {
-    console.log(e.target.value)
-    // blockState(s => s = e.target.value)
     state.block = e.target.value
     filterClasses()
   }
   function handleDayState(e) {
-    console.log(e.target.value)
-    // dayState(s => s = e.target.value)
     state.day = e.target.value
     filterClasses()
   }
   function handlePeriodState(e) {
-    console.log(e.target.value)
-    // periodState(s => s = e.target.value)
     state.period = e.target.value
     filterClasses()
   }
   function filterClasses() {
     classesState(s => s = classMap.getFilteredClasses(state.day, state.period, state.block))
-    // state.classes = classMap.getFilteredClasses(state.day, state.period, state.block)
-    console.log(classes)
   }
 }
 
