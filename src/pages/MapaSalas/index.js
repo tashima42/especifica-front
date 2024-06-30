@@ -1,27 +1,33 @@
 import "./MapaSalas.css";
 import Subtitulo from "../../components/Subtitulo";
 import Titulo from "../../components/Titulo";
-import BotaoBuscar from "../../components/BotaoBuscar";
 import CardSala from "../../components/CardSala";
 import Nav from "../../components/Nav";
+import { ClassMap } from "../../controllers/horarios";
+import { useState } from "react";
 
 function MapaSalas() {
+  const classMap = new ClassMap()
+  const state = {
+    block: "p",
+    day: "segunda",
+    period: "m1",
+  }
+  const [classes, classesState] = useState(classMap.getFilteredClasses("segunda", "m1", "p"))
+
   return (
     <div className="nav-container">
       <Nav />
       <div className="mapa-salas">
         <div className="titulo-subtitulo">
           <Titulo>Mapa de salas</Titulo>
-          <Subtitulo>
-            Consulte o status das salas utilizadas pelos cursos do DACOM
-          </Subtitulo>
+          <Subtitulo>Consulte o status das salas utilizadas pelos cursos do DACOM</Subtitulo>
         </div>
 
         <form>
           <div>
             <label>Bloco</label>
-            <select>
-              <option value="">-</option>
+            <select onChange={handleBlockState}>
               <option value="p">P</option>
               <option value="a">A</option>
             </select>
@@ -29,10 +35,9 @@ function MapaSalas() {
 
           <div>
             <label>Dia da semana</label>
-            <select>
-              <option value="">-</option>
+            <select onChange={handleDayState}>
               <option value="segunda">Segunda-feira</option>
-              <option value="terça">Terça-feira</option>
+              <option value="terca">Terça-feira</option>
               <option value="quarta">Quarta-feira</option>
               <option value="quinta">Quinta-feira</option>
               <option value="sexta">Sexta-feira</option>
@@ -43,56 +48,33 @@ function MapaSalas() {
 
           <div>
             <label>Período</label>
-            <select>
-              <option value="">-</option>
-              <option value="manha">Manhã</option>
-              <option value="tarde">Tarde</option>
-              <option value="noite">Noite</option>
+            <select onChange={handlePeriodState}>
+              <option value="m1">M1</option>
+              <option value="m2">M2</option>
+              <option value="m3">M3</option>
+              <option value="m4">M4</option>
+              <option value="m5">M5</option>
+              <option value="m6">M6</option>
+              <option value="t1">T1</option>
+              <option value="t2">T2</option>
+              <option value="t3">T3</option>
+              <option value="t4">T4</option>
+              <option value="t5">T5</option>
+              <option value="t6">T6</option>
+              <option value="n1">N1</option>
+              <option value="n2">N2</option>
+              <option value="n3">N3</option>
+              <option value="n4">N4</option>
+              <option value="n5">N5</option>
             </select>
           </div>
 
-          <BotaoBuscar />
         </form>
 
         <div className="caixa-salas">
           <h4>Selecione uma sala para checar seus Horários</h4>
           <div className="salas">
-            <CardSala
-              sala="001"
-              capacidade={40}
-              disciplina="AS65A"
-              docente="Thiaga Ellen"
-              alunos={40}
-              turma="N15"
-              status="Em uso"
-            />
-            <CardSala
-              sala="002"
-              capacidade={40}
-              disciplina="AS65A"
-              docente="Thiaga Ellen"
-              alunos={40}
-              turma="N15"
-              status="Indisponível"
-            />
-            <CardSala
-              sala="003"
-              capacidade={30}
-              disciplina="AS65A"
-              docente="Joze"
-              alunos="28"
-              turma="N15"
-              status="Em uso"
-            />
-            <CardSala
-              sala="004"
-              capacidade={50}
-              disciplina="-"
-              docente="-"
-              alunos="-"
-              turma="-"
-              status="Disponível"
-            />
+            {classes.map((c, i) => <CardSala key={i} sala={c.classroom.getNumber()} disciplina={c.class.getClassCode()} docente={c.class.getProfessor()} alunos={c.class.getStudents()} turma={c.class.getCode()} status="Em uso"></CardSala>)}
           </div>
         </div>
 
@@ -108,7 +90,23 @@ function MapaSalas() {
         </div>
       </div>
     </div>
-  );
+  )
+
+  function handleBlockState(e) {
+    state.block = e.target.value
+    filterClasses()
+  }
+  function handleDayState(e) {
+    state.day = e.target.value
+    filterClasses()
+  }
+  function handlePeriodState(e) {
+    state.period = e.target.value
+    filterClasses()
+  }
+  function filterClasses() {
+    classesState(s => s = classMap.getFilteredClasses(state.day, state.period, state.block))
+  }
 }
 
 export default MapaSalas;
