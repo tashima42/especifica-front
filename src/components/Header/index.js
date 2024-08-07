@@ -17,7 +17,11 @@ function Header() {
   return (
     <header className="cabecalho">
       <div className="esquerdo">
-        <img src={Logo} alt="Logo da UTFPR" onClick={() => window.location.reload()}/>
+        <img
+          src={Logo}
+          alt="Logo da UTFPR"
+          onClick={() => (window.location.href = "/")}
+        />
         <div>
           <input placeholder="O que você procura?" type="text" />
           <button>
@@ -26,12 +30,23 @@ function Header() {
         </div>
       </div>
       <div className="direito">
-        <FaRegBell className="sino" onClick={toggleIsOpen}/>
-        <div className="caixa-notificacoes" style={{display: isOpen ? "flex" : "none"}}>
+        <FaRegBell className="sino" onClick={toggleIsOpen} />
+        <div
+          className="caixa-notificacoes"
+          style={{ display: isOpen ? "flex" : "none" }}
+        >
           <div className="caixa-notificacoes__container">
-            <Notificacao tipo="aviso" texto="AVISO! Aloque todas as aulas da turma N14 de “Algoritmos 1” em uma única sala! Salas atuais: “P105”, “P005”;"/>
-            <Notificacao tipo="check" texto="Você alterou a turma N14 de “Algoritmos 1” de sala. (P005 > P105)”;"/>
-            <Link to="/notificacoes" className="botao-ver-todas">Ver todas</Link>
+            <Notificacao
+              tipo="aviso"
+              texto="AVISO! Aloque todas as aulas da turma N14 de “Algoritmos 1” em uma única sala! Salas atuais: “P105”, “P005”;"
+            />
+            <Notificacao
+              tipo="check"
+              texto="Você alterou a turma N14 de “Algoritmos 1” de sala. (P005 > P105)”;"
+            />
+            <Link to="/notificacoes" className="botao-ver-todas">
+              Ver todas
+            </Link>
           </div>
         </div>
         <div className="perfil">
