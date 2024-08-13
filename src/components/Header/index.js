@@ -6,16 +6,18 @@ import "./Header.css";
 import Notificacao from "../Notificacao";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuthentication } from "../Context/AuthContext";
+import Cookies from "js-cookie";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated } = useAuthentication();
 
   function toggleIsOpen() {
     setIsOpen(!isOpen);
   }
-
   return (
-    <header className="cabecalho">
+    <header className="cabecalho" style={{ justifyContent: "space-around" }}>
       <div className="esquerdo">
         <img
           src={Logo}
@@ -29,31 +31,35 @@ function Header() {
           </button>
         </div>
       </div>
-      <div className="direito">
-        <FaRegBell className="sino" onClick={toggleIsOpen} />
-        <div
-          className="caixa-notificacoes"
-          style={{ display: isOpen ? "flex" : "none" }}
-        >
-          <div className="caixa-notificacoes__container">
-            <Notificacao
-              tipo="aviso"
-              texto="AVISO! Aloque todas as aulas da turma N14 de “Algoritmos 1” em uma única sala! Salas atuais: “P105”, “P005”;"
-            />
-            <Notificacao
-              tipo="check"
-              texto="Você alterou a turma N14 de “Algoritmos 1” de sala. (P005 > P105)”;"
-            />
-            <Link to="/notificacoes" className="botao-ver-todas">
-              Ver todas
-            </Link>
+      {isAuthenticated ? (
+        <div className="direito" style={{ marginLeft: 1000 }}>
+          <FaRegBell className="sino" onClick={toggleIsOpen} />
+          <div
+            className="caixa-notificacoes"
+            style={{ display: isOpen ? "flex" : "none" }}
+          >
+            <div className="caixa-notificacoes__container">
+              <Notificacao
+                tipo="aviso"
+                texto="AVISO! Aloque todas as aulas da turma N14 de “Algoritmos 1” em uma única sala! Salas atuais: “P105”, “P005”;"
+              />
+              <Notificacao
+                tipo="check"
+                texto="Você alterou a turma N14 de “Algoritmos 1” de sala. (P005 > P105)”;"
+              />
+              <Link to="/notificacoes" className="botao-ver-todas">
+                Ver todas
+              </Link>
+            </div>
+          </div>
+          <div className="perfil">
+            <div>{Cookies.get("username")}</div>
+            <img src={FotoPerfil} alt="Foto de perfil" />
           </div>
         </div>
-        <div className="perfil">
-          <div>Cristina rocha</div>
-          <img src={FotoPerfil} alt="Foto de perfil" />
-        </div>
-      </div>
+      ) : (
+        <></>
+      )}
     </header>
   );
 }

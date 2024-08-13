@@ -1,36 +1,17 @@
 import { useState } from "react";
 import "./Login.css";
+import { useAuthentication } from "../../components/Context/AuthContext";
 
 function Login() {
+  const { login } = useAuthentication();
   const [isChecked, setIsChecked] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    console.log(username);
-    console.log(password);
 
-    const baseUrl = "https://utf-api.tashima.space/Login/Authenticate";
-
-    const urlWithParams = `${baseUrl}?username=${encodeURIComponent(
-      username
-    )}&password=${encodeURIComponent(password)}`;
-    console.log(urlWithParams);
-    try {
-      const response = await fetch(urlWithParams, {
-        method: "POST",
-        mode: "no-cors",
-      });
-      console.log(response.json());
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-    } catch (error) {
-      console.error("There was a problem with your fetch operation:", error);
-    }
+    await login({ username: username, password: password });
   };
 
   return (
