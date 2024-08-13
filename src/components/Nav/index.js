@@ -7,8 +7,10 @@ import Settings from "../../img/Settings.png";
 import TestResults from "../../img/Test Results.png";
 import Logout from "../../img/Logout.png";
 import { NavLink } from "react-router-dom";
+import { useAuthentication } from "../Context/AuthContext";
 
 function Nav() {
+  const { logout } = useAuthentication();
   return (
     <div>
       <nav className="barra-lateral">
@@ -72,20 +74,20 @@ function Nav() {
           </div>
           <div className="baixo">
             <li>
-                <NavLink
-                  to="/configuracoes"
-                  className={({ isActive }) => {
-                    return isActive ? "item--ativo" : "item";
-                  }}
-                >
-                  <img src={Settings} alt="icone de engrenagens" />
-                  <p>Configurações</p>
-                </NavLink>
-              </li>
-              <li className="item">
-                <img src={Logout} alt="icone do logout" />
-                <p>Logout</p>
-              </li>
+              <NavLink
+                to="/configuracoes"
+                className={({ isActive }) => {
+                  return isActive ? "item--ativo" : "item";
+                }}
+              >
+                <img src={Settings} alt="icone de engrenagens" />
+                <p>Configurações</p>
+              </NavLink>
+            </li>
+            <li className="item" onClick={logout}>
+              <img src={Logout} alt="icone do logout" />
+              <p>Logout</p>
+            </li>
           </div>
         </ul>
       </nav>

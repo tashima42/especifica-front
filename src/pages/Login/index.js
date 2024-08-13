@@ -1,8 +1,18 @@
 import { useState } from "react";
 import "./Login.css";
+import { useAuthentication } from "../../components/Context/AuthContext";
 
 function Login() {
+  const { login } = useAuthentication();
   const [isChecked, setIsChecked] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    await login({ username: username, password: password });
+  };
 
   return (
     <div className="login-container">
@@ -13,12 +23,20 @@ function Login() {
         <form>
           <div className="float-label">
             <label>Usuário</label>
-            <input type="text" />
+            <input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+            />
           </div>
 
           <div className="float-label">
             <label>Senha</label>
-            <input type={isChecked ? "text" : "password"} />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type={isChecked ? "text" : "password"}
+            />
           </div>
 
           <div className="checkbox">
@@ -32,7 +50,9 @@ function Login() {
           </div>
 
           <div className="login__botoes">
-            <button type="submit">Entrar</button>
+            <button onClick={handleLogin} type="submit">
+              Entrar
+            </button>
             <span>Não tem conta?</span>
             <a href="*">Saiba como acessar!</a>
           </div>
