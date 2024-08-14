@@ -1,8 +1,8 @@
 import "./BotaoBuscar.css";
 
-function BotaoBuscar() {
+function BotaoBuscar(props) {
   return (
-    <button type="submit" className="botao-buscar">
+    <button className="botao-buscar" onClick={props.onClick}>
       Buscar
     </button>
   );
