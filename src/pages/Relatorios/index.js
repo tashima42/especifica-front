@@ -7,9 +7,11 @@ import "./Relatorios.css";
 import Print from "../../img/Print.png";
 import { useEffect, useRef, useState } from "react";
 import { getLogs } from "../../controllers/logs";
+import { useNavigate } from "react-router-dom";
 
 function Relatorios() {
   const [logs, setLogs] = useState([])
+  const navigate = useNavigate()
 
   useEffect(fetchLogs, [])
   const contentToPrint = useRef(null);
@@ -19,8 +21,12 @@ function Relatorios() {
   });
 
   function fetchLogs() {
-    getLogs().then(apiLogs => setLogs(apiLogs))
+    getLogs().then(apiLogs => setLogs(apiLogs)).catch(e => {
+      console.error(e)
+      navigate("/")
+    })
   }
+
 
   return (
     <div className="nav-container">
