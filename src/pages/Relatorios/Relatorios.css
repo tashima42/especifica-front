@@ -53,7 +53,7 @@
     padding-left: 0.5em;
 }
 
-.impressora button {
+.relatorios__form button {
     border: none;
     display: flex;
     align-items: center;
@@ -61,9 +61,11 @@
     border-radius: 7px;
     padding: 8px;
     cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
 }
 
-.impressora button:hover {
+.relatorios__form button:hover {
     background-color: #deb11d;
 }
 
@@ -112,3 +114,4 @@
     cursor: pointer;
     background-color: #ccc850;
 }
+
