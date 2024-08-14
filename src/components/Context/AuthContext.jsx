@@ -29,7 +29,7 @@ export const AuthenticationProvider = ({ children }) => {
 
       let expires = "";
       const date = new Date();
-      date.setTime(date.getTime() + 2 * 60 * 60 * 1000);
+      date.setDate(date.getDate() + 7);
       expires = "; expires=" + date.toUTCString();
 
       const token = responseBody;
