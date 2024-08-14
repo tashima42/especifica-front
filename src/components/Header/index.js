@@ -32,7 +32,7 @@ function Header() {
         </div>
       </div>
       {isAuthenticated ? (
-        <div className="direito" style={{ marginLeft: 1000 }}>
+        <div className="direito" >
           <FaRegBell className="sino" onClick={toggleIsOpen} />
           <div
             className="caixa-notificacoes"
@@ -54,7 +54,6 @@ function Header() {
           </div>
           <div className="perfil">
             <div>{Cookies.get("username")}</div>
-            <img src={FotoPerfil} alt="Foto de perfil" />
           </div>
         </div>
       ) : (
