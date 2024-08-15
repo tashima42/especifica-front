@@ -1,153 +1,201 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "../../components/Nav";
 import Titulo from "../../components/Titulo";
 import "./Configuracoes.css";
-import { FaPen, FaEye, FaEyeSlash, FaRegTrashCan } from "react-icons/fa6";
+import { FaPen, FaEye, FaEyeSlash } from "react-icons/fa6";
+import { createLogin, getLogin, updateLogin } from "../../controllers/config";
+import { useAuthentication } from "../../components/Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Configuracoes() {
-    const [mostrarSenha, setMostrarSenha] = useState(false);
-    const [mostrarNovaSenha, setMostrarNovaSenha] = useState(false);
-    const [mostrarNovaSenha2, setMostrarNovaSenha2] = useState(false);
+  const { logout } = useAuthentication();
+  const navigate = useNavigate()
 
-    function toggleSenha() {
-        setMostrarSenha(!mostrarSenha);
+  const tipos = [ "Professor", "Administrador" ]
+  const [userInfo, setUserInfo] = useState({})
+  const [username, setUsername] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [repeatPassword, setRepeatPassword] = useState("")
+
+  const [mostrarNovaSenha, setMostrarNovaSenha] = useState(false);
+  const [mostrarNovaSenha2, setMostrarNovaSenha2] = useState(false);
+
+  const [enableSave, setEnableSave] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const [newAccountEnableSave, setNewAccountEnableSave] = useState(false)
+  const [newAccountErrorMessage, setNewAccountErrorMessage] = useState("")
+
+  const [tipo, setTipo] = useState("1")
+  const [newAccountUsername, setNewAccountUsername] = useState("")
+  const [newAccountPassword, setNewAccountPassword] = useState("")
+
+  useEffect(() => {
+    getLogin().then(l => {
+      setUserInfo(l)
+      setUsername(l.user)
+    })
+  }, [])
+
+  useEffect(() => {
+    updateErrorMessage()
+  }, [username, newPassword, repeatPassword])
+
+  useEffect(() => {
+    updateNewAccountErrorMessage()
+  }, [newAccountUsername, newAccountPassword, tipo])
+
+  function toggleNovaSenha() {
+      setMostrarNovaSenha(!mostrarNovaSenha);
+  }
+
+  function toggleNovaSenha2() {
+      setMostrarNovaSenha2(!mostrarNovaSenha2);
+  }
+
+  function changeUserInfo() {
+    const u =  { ...userInfo } // copy userInfo
+    u.user = username
+    if (newPassword != "" && newPassword != " ") {
+      u.password = newPassword
     }
+    setUserInfo(u)
+    // send the update login request and logout user
+    updateLogin(u).then(() => logout(navigate)).catch(e => console.error(e))
+  }
 
-    function toggleNovaSenha() {
-        setMostrarNovaSenha(!mostrarNovaSenha);
+  function createUser() {
+    const login = {
+      user: newAccountUsername,
+      password: newAccountPassword,
+      isAdmin: Number(tipo)
     }
+    createLogin(login).then(() => alert("Conta criada!"))
+  }
 
-    function toggleNovaSenha2() {
-        setMostrarNovaSenha2(!mostrarNovaSenha2);
+  function handleFormChange(setState, value) {
+    console.log("value: " + value)
+    setState(value)
+  }
+
+  function updateErrorMessage() {
+    const { valid, message } = validate() 
+    setErrorMessage(message)
+    setEnableSave(valid)
+  }
+
+  function validate() {
+    if (username == "" || username == " ") {
+      return { valid: false, message: "Nome de usuário vazio"}
     }
+    if (userInfo.user == username && (newPassword == "" || newPassword == " ")) {
+      return { valid: false, message: "" }
+    }
+    if (newPassword != "" && newPassword != " ") {
+      if (newPassword != repeatPassword) {
+        return { valid: false, message: "Senhas não coincidem"}
+      }
+    }
+    return { valid: true, message: " " }
+  }
 
-    return (
-        <div className="nav-container">
-            <Nav />
-            <div className="configuracoes">
-                <Titulo>Configurações</Titulo>
+  function updateNewAccountErrorMessage() {
+    const { valid, message } = validateNewAccount() 
+    setNewAccountErrorMessage(message)
+    setNewAccountEnableSave(valid)
+  }
 
-                <form className="editar-info">
-                    <div className="info-basicas">
-                        <h4>Informações básicas</h4>
-                        <div className="info-basicas__form">
+  function validateNewAccount() {
+    if (newAccountUsername == "" || newAccountUsername == " ") {
+      return { valid: false, message: "Nome de usuário vazio"}
+    }
+    if (newAccountPassword == "" || newAccountPassword == " ") {
+      return { valid: false, message: "Senha vazia"}
+    }
+    return { valid: true, message: " " }
+  }
+
+  return (
+      <div className="nav-container">
+          <Nav />
+          <div className="configuracoes">
+              <Titulo>Configurações</Titulo>
+
+              <div className="editar-info">
+                <div className="info-acesso">
+                    <h4>Informações de acesso</h4>
+                    <div className="info-acesso__form">
+                        <div className="info-acesso__form--cima">
                             <div className="campos">
-                                <label htmlFor="tipo">Tipo</label>
-                                <select id="tipo">
-                                    <option>Administrador</option>
-                                    <option>professor</option>
-                                </select>
-                            </div>
-
-                            <div className="campos">
-                                <label htmlFor="nome">Nome</label>
+                                <label htmlFor="username">Nome de Usuário</label>
                                 <div>
-                                    <input type="text" id="nome" />
+                                    <input type="string" id="username" value={username} onChange={e => handleFormChange(setUsername, e.target.value)} />
                                     <FaPen className="caneta" />
                                 </div>
                             </div>
+                        </div>
+                        
+                        <div className="info-acesso__form--baixo">
+                            <div className="campos">
+                                <label htmlFor="nova-senha">Nova senha</label>
+                                <div>
+                                    <input type={mostrarNovaSenha ? "text" : "password"} id="nova-senha" value={newPassword} onChange={e => handleFormChange(setNewPassword, e.target.value)} />
+                                    {
+                                        mostrarNovaSenha ? <FaEye onClick={toggleNovaSenha}/> : <FaEyeSlash onClick={toggleNovaSenha}/>
+                                    }
+                                </div>
+                            </div>
 
                             <div className="campos">
-                                <label htmlFor="perfil">Foto de perfil</label>
+                                <label htmlFor="nova-senha2">Confirmar Nova senha</label>
                                 <div>
-                                    <input type="file" id="perfil" />
-                                    <FaPen className="caneta" />
-                                </div>
-                                <button><FaRegTrashCan className="lixeira"/></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="info-acesso">
-                        <h4>Informações de acesso</h4>
-                        <div className="info-acesso__form">
-                            <div className="info-acesso__form--cima">
-                                <div className="campos">
-                                    <label htmlFor="email">E-mail</label>
-                                    <div>
-                                        <input type="email" id="email" />
-                                        <FaPen className="caneta" />
-                                    </div>
-                                </div>
-
-                                <div className="campos">
-                                    <label htmlFor="senha">Senha</label>
-                                    <div>
-                                        <input type={mostrarSenha ? "text" : "password"} id="senha" />
-                                        {
-                                            mostrarSenha ? <FaEye onClick={toggleSenha}/> : <FaEyeSlash onClick={toggleSenha}/>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div className="info-acesso__form--baixo">
-                                <div className="campos">
-                                    <label htmlFor="nova-senha">Nova senha</label>
-                                    <div>
-                                        <input type={mostrarNovaSenha ? "text" : "password"} id="nova-senha" />
-                                        {
-                                            mostrarNovaSenha ? <FaEye onClick={toggleNovaSenha}/> : <FaEyeSlash onClick={toggleNovaSenha}/>
-                                        }
-                                    </div>
-                                </div>
-
-                                <div className="campos">
-                                    <label htmlFor="nova-senha2">Confirmar Nova senha</label>
-                                    <div>
-                                        <input type={mostrarNovaSenha2 ? "text" : "password"} id="nova-senha2" />
-                                        {
-                                            mostrarNovaSenha2 ? <FaEye onClick={toggleNovaSenha2}/> : <FaEyeSlash onClick={toggleNovaSenha2}/>
-                                        }
-                                    </div>
+                                    <input type={mostrarNovaSenha2 ? "text" : "password"} id="nova-senha2"  value={repeatPassword} onChange={e => handleFormChange(setRepeatPassword, e.target.value)}/>
+                                    {
+                                        mostrarNovaSenha2 ? <FaEye onClick={toggleNovaSenha2}/> : <FaEyeSlash onClick={toggleNovaSenha2}/>
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="botao-salvar__container">
-                        <button type="submit" className="botao-salvar">Salvar</button>
-                    </div>
-                </form>
+                </div>
+                <div className="botao-salvar__container">
+                    <p>{errorMessage}</p>
+                    <button className={ enableSave ? "botao-salvar" : "botao-salvar disabled"} disabled={!enableSave} onClick={changeUserInfo}>Salvar</button>
+                </div>
+              </div>
 
-                <form className="criar-conta">
-                    <div className="criar-conta__caixa">
-                        <h4 style={{marginBottom: "1em"}}>Criar uma conta</h4>
-                        <div className="campos">
-                            <label htmlFor="tipo-conta">Tipo</label>
-                            <select id="tipo-conta">
-                                <option>Administrador</option>
-                                <option selected="true">Professor</option>
-                            </select>
-                        </div>
+              <div className="criar-conta">
+                  <div className="criar-conta__caixa">
+                      <h4 style={{marginBottom: "1em"}}>Criar uma conta</h4>
+                      <div className="campos">
+                          <label htmlFor="tipo-conta">Tipo</label>
+                          <select id="tipo-conta" onChange={e => handleFormChange(setTipo, e.target.value)}>
+                              <option value="1">Administrador</option>
+                              <option value="0">Professor</option>
+                          </select>
+                      </div>
 
-                        <div className="campos">
-                            <label htmlFor="nome-conta">Nome</label>
-                            <div>
-                                <input type="text" placeholder="Digite o nome do usuário"/>
-                            </div>
-                        </div>
+                      <div className="campos">
+                          <label htmlFor="new-username">Nome de Usuário</label>
+                          <div>
+                              <input type="new-username" placeholder="Novo Nome de Usuário" onChange={e => handleFormChange(setNewAccountUsername, e.target.value)}/>
+                          </div>
+                      </div>
 
-                        <div className="campos">
-                            <label htmlFor="email-conta">E-mail</label>
-                            <div>
-                                <input type="email" placeholder="Cadastre o e-mail do usuário"/>
-                            </div>
-                        </div>
-
-                        <div className="campos">
-                            <label htmlFor="senha-conta">Senha</label>
-                            <div>
-                                <input type="password" placeholder="Crie uma senha para o usuário"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="botao-salvar__container">
-                        <button type="submit" className="botao-salvar">Criar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    )
+                      <div className="campos">
+                          <label htmlFor="senha-conta">Senha</label>
+                          <div>
+                              <input type="password" placeholder="Crie uma senha para o usuário" onChange={e => handleFormChange(setNewAccountPassword, e.target.value)}/>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="botao-salvar__container">
+                      <p>{newAccountErrorMessage}</p>
+                      <button type="submit" className={ newAccountEnableSave ? "botao-salvar" : "botao-salvar disabled"} disabled={!newAccountEnableSave} onClick={createUser}>Criar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  )
 }
 
 export default Configuracoes;
