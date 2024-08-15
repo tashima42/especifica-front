@@ -13,7 +13,7 @@ function Relatorios() {
   const [logs, setLogs] = useState([])
   const navigate = useNavigate()
 
-  useEffect(fetchLogs, [])
+  useEffect(fetchLogs, [navigate])
   const contentToPrint = useRef(null);
   const handlePrint = useReactToPrint({
     documentTitle: "relatorio-detalhado",

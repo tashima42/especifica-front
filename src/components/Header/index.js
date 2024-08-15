@@ -1,7 +1,6 @@
 import Logo from "../../img/logo.png";
 import { FaMagnifyingGlass as Lupa } from "react-icons/fa6";
 import { FaRegBell } from "react-icons/fa6";
-import FotoPerfil from "../../img/pic-profile.png";
 import "./Header.css";
 import Notificacao from "../Notificacao";
 import { Link } from "react-router-dom";
