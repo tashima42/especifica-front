@@ -1,5 +1,4 @@
 import Logo from "../../img/logo.png";
-import { FaMagnifyingGlass as Lupa } from "react-icons/fa6";
 import { FaRegBell } from "react-icons/fa6";
 import "./Header.css";
 import Notificacao from "../Notificacao";
@@ -23,12 +22,6 @@ function Header() {
           alt="Logo da UTFPR"
           onClick={() => (window.location.href = "/")}
         />
-        <div>
-          <input placeholder="O que você procura?" type="text" />
-          <button>
-            <Lupa />
-          </button>
-        </div>
       </div>
       {isAuthenticated ? (
         <div className="direito" >

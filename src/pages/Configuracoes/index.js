@@ -11,7 +11,6 @@ function Configuracoes() {
   const { logout } = useAuthentication();
   const navigate = useNavigate()
 
-  const tipos = [ "Professor", "Administrador" ]
   const [userInfo, setUserInfo] = useState({})
   const [username, setUsername] = useState("")
   const [newPassword, setNewPassword] = useState("")
@@ -37,12 +36,14 @@ function Configuracoes() {
   }, [])
 
   useEffect(() => {
-    updateErrorMessage()
-  }, [username, newPassword, repeatPassword])
+      const { valid, message } = validate() 
+      setErrorMessage(message)
+      setEnableSave(valid)
+  }, [username, newPassword, repeatPassword, errorMessage, validate])
 
   useEffect(() => {
     updateNewAccountErrorMessage()
-  }, [newAccountUsername, newAccountPassword, tipo])
+  }, [newAccountUsername, newAccountPassword, tipo, updateNewAccountErrorMessage])
 
   function toggleNovaSenha() {
       setMostrarNovaSenha(!mostrarNovaSenha);
@@ -55,7 +56,7 @@ function Configuracoes() {
   function changeUserInfo() {
     const u =  { ...userInfo } // copy userInfo
     u.user = username
-    if (newPassword != "" && newPassword != " ") {
+    if (newPassword !== "" && newPassword !== " ") {
       u.password = newPassword
     }
     setUserInfo(u)
@@ -77,21 +78,16 @@ function Configuracoes() {
     setState(value)
   }
 
-  function updateErrorMessage() {
-    const { valid, message } = validate() 
-    setErrorMessage(message)
-    setEnableSave(valid)
-  }
 
   function validate() {
-    if (username == "" || username == " ") {
+    if (username === "" || username === " ") {
       return { valid: false, message: "Nome de usuário vazio"}
     }
-    if (userInfo.user == username && (newPassword == "" || newPassword == " ")) {
+    if (userInfo.user === username && (newPassword === "" || newPassword === " ")) {
       return { valid: false, message: "" }
     }
-    if (newPassword != "" && newPassword != " ") {
-      if (newPassword != repeatPassword) {
+    if (newPassword !== "" && newPassword !== " ") {
+      if (newPassword !== repeatPassword) {
         return { valid: false, message: "Senhas não coincidem"}
       }
     }
@@ -105,10 +101,10 @@ function Configuracoes() {
   }
 
   function validateNewAccount() {
-    if (newAccountUsername == "" || newAccountUsername == " ") {
+    if (newAccountUsername === "" || newAccountUsername === " ") {
       return { valid: false, message: "Nome de usuário vazio"}
     }
-    if (newAccountPassword == "" || newAccountPassword == " ") {
+    if (newAccountPassword === "" || newAccountPassword === " ") {
       return { valid: false, message: "Senha vazia"}
     }
     return { valid: true, message: " " }
