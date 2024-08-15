@@ -1,7 +1,5 @@
 import Logo from "../../img/logo.png";
-import { FaMagnifyingGlass as Lupa } from "react-icons/fa6";
 import { FaRegBell } from "react-icons/fa6";
-import FotoPerfil from "../../img/pic-profile.png";
 import "./Header.css";
 import Notificacao from "../Notificacao";
 import { Link } from "react-router-dom";
@@ -24,15 +22,9 @@ function Header() {
           alt="Logo da UTFPR"
           onClick={() => (window.location.href = "/")}
         />
-        <div>
-          <input placeholder="O que você procura?" type="text" />
-          <button>
-            <Lupa />
-          </button>
-        </div>
       </div>
       {isAuthenticated ? (
-        <div className="direito" style={{ marginLeft: 1000 }}>
+        <div className="direito" >
           <FaRegBell className="sino" onClick={toggleIsOpen} />
           <div
             className="caixa-notificacoes"
@@ -54,7 +46,6 @@ function Header() {
           </div>
           <div className="perfil">
             <div>{Cookies.get("username")}</div>
-            <img src={FotoPerfil} alt="Foto de perfil" />
           </div>
         </div>
       ) : (

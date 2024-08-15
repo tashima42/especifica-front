@@ -6,11 +6,12 @@ import Person from "../../img/Person.png";
 import Settings from "../../img/Settings.png";
 import TestResults from "../../img/Test Results.png";
 import Logout from "../../img/Logout.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthentication } from "../Context/AuthContext";
 
 function Nav() {
   const { logout } = useAuthentication();
+  const navigate = useNavigate()
   return (
     <div>
       <nav className="barra-lateral">
@@ -84,7 +85,7 @@ function Nav() {
                 <p>Configurações</p>
               </NavLink>
             </li>
-            <li className="item" onClick={logout}>
+            <li className="item" onClick={() => logout(navigate)}>
               <img src={Logout} alt="icone do logout" />
               <p>Logout</p>
             </li>
